@@ -1,46 +1,53 @@
 package com.example.diceroller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * This activity allows the user to roll a dice and view the result
+ * on the screen.
+ */
 class MainActivity : AppCompatActivity() {
+
+    /**
+     * This method is called when the Activity is created.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // buscamos el elemento buton con findViewById
-        // guardamos una referencia al objeto button en una variable
-        // de tipo Button.
+
+        // Find the Button in the layout
         val rollButton: Button = findViewById(R.id.button)
-        // existe un id de recurso tanto para el botón como para el texView
-        // del formato R.<type>.<name>. por ejemplo del tipo id, o string (para
-        // el texto del textView)
-        rollButton.setOnClickListener{
-            // esto puede ser declarado como una variable
-           Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_SHORT).show()
 
-            val resultTextView: TextView = findViewById(R.id.textView)
-            resultTextView.text = "6"
-
-            rollDice()
-        }
-
-
+        // Set a click listener on the button to roll the dice when the user taps the button
+        rollButton.setOnClickListener { rollDice() }
     }
 
+    /**
+     * Roll the dice and update the screen with the result.
+     */
     private fun rollDice() {
-        // instanciamos un objeto de la clase Dice
+        // Create new Dice object with 6 sides and roll it
         val dice = Dice(6)
         val diceRoll = dice.roll()
+
+        // Update the screen with the dice roll
         val resultTextView: TextView = findViewById(R.id.textView)
         resultTextView.text = diceRoll.toString()
     }
 }
 
-class Dice(val numSides: Int){
-    fun roll(): Int{
+/**
+ * Dice with a fixed number of sides.
+ */
+class Dice(private val numSides: Int) {
+
+    /**
+     * Do a random dice roll and return the result.
+     */
+    fun roll(): Int {
         return (1..numSides).random()
     }
 }
