@@ -5,6 +5,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+// PRACTIVA -> Agrega otro dado a la app. Al hacer clic en el botón Roll, se deberán
+// lanzar 2 dados. Los resultados se deben mostrar en 2 TextViews diferentes en la
+// pantalla.
+
 /**
  * This activity allows the user to roll a dice and view the result
  * on the screen.
@@ -33,9 +37,15 @@ class MainActivity : AppCompatActivity() {
         val dice = Dice(6)
         val diceRoll = dice.roll()
 
+        val dice2 = Dice(6)
+        val diceRoll2 = dice2.roll()
+
         // Update the screen with the dice roll
         val resultTextView: TextView = findViewById(R.id.textView)
         resultTextView.text = diceRoll.toString()
+
+        val resultTextView2: TextView = findViewById(R.id.textView2)
+        resultTextView2.text = diceRoll2.toString()
     }
 }
 
