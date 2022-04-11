@@ -1,17 +1,17 @@
 package com.example.diceroller
 
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
-import org.junit.Assert.*
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class ExampleUnitTest {
+
+    // indicamos que lo que vamos a escribir es una prueba de la biblioteca org.junit
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun generate_number(){
+        // ctrl + p to see parameters
+        val dice = Dice(6)
+        val rollResult = dice.roll()
+        assertTrue("The value of rollResult was not between 1 and 6", rollResult in 1..6)
     }
 }
